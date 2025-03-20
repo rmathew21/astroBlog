@@ -1,9 +1,8 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
 import { Image } from "astro:assets"
 import logo from '../images/logo.png'
 
+const { Title = 'Articles, Stories & Tutorials for Tech People' } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -21,7 +20,7 @@ import logo from '../images/logo.png'
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <title>Tech People Blog</title>
+    <title>{Title}</title>
   </head>
   <body class="">
     <nav class="bg-gray-900 text-white">
