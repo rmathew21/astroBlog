@@ -1,14 +1,19 @@
 ---
-const { Title = "Articles, Stories, & Tutorials For Tech People" } = Astro.props;
+import { Image } from "astro:assets"
+import logo from '../images/logo.png'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../constants';
+
+const { Title = 'Articles, Stories & Tutorials for Tech People' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={SITE_DESCRIPTION} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{Title}</title>
+		<title>{SITE_TITLE} - {Title}</title>
 	</head>
 	<body>
 		<slot />
