@@ -26,14 +26,16 @@ interface Props {
       integrity="sha512-BJ/5sR2hFxQTKin/55JQCcMTObShDBAmVjL/3NR/MVcrhyOazJjAgvROem03+HYyGw16SVdSfoWCFGr9syxAKA=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    ></script>
+    > console.log('MainLayout is rendering..');
+  
+  </script>
     <title>{SITE_TITLE} - {Title}</title>
   </head>
   <body class="">
 
     <Navbar />
     <section class="container mx-auto max-w-screen-xl mt-10 px-8">
-      <slot/>    
+      <slot />    
     </section>
     <Footer />
     <!--</div>  end of section -->
