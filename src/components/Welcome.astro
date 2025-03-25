@@ -1,20 +1,20 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
+// import MainLayout from "../layouts/MainLayout.astro";
 import SearchForm from "../components/SearchForm.astro";
 import ArticleCard from "./ArticleCard.astro";
 import MostRecentArticle from "./MostRecentArticle.astro";
 import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+// import { getCollection } from "astro:content";
+// import type { CollectionEntry } from "astro:content";
 
-
-const { Title = 'Articles, Stories & Tutorials for Tech People' } = Astro.props;
-const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
-  .sort((a:CollectionEntry<'blog'>, b:CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const mostRecentArticle: CollectionEntry<'blog'> = allBlogArticles[0];
-const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
+const { mostRecentArticle, otherArticles } = Astro.props;
+// const { Title = 'Articles, Stories & Tutorials for Tech People' } = Astro.props;
+// const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+//   .sort((a:CollectionEntry<'blog'>, b:CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// const mostRecentArticle: CollectionEntry<'blog'> = allBlogArticles[0];
+// const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
 ---
-<MainLayout Title={Title}>
+<!-- <MainLayout Title={Title}> -->
       <!-- Top Grid -->
       <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <div>
@@ -23,7 +23,9 @@ const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
           </h1>
           <SearchForm />
         </div>
-        <MostRecentArticle article={mostRecentArticle} />
+
+        <!-- <MostRecentArticle article={mostRecentArticle} /> -->
+        {mostRecentArticle ? <MostRecentArticle article={mostRecentArticle} /> : <p>No recent articles found.</p>}
       </div>
 
       <!-- Main Grid -->
@@ -32,6 +34,6 @@ const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
         <ArticleCard article={article} />
         ))}
       </div>
-    </MainLayout>
+    <!-- </MainLayout> -->
      
 

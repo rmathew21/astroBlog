@@ -1,12 +1,24 @@
 ---
 import Welcome from '../components/Welcome.astro';
-// import Layout from '../layouts/Layout.astro'
-// import MainLayout from '../layouts/MainLayout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import "../styles/global.css";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+// Fetch articles safely
+let allBlogArticles: CollectionEntry<'blog'>[] = [];
+try {
+	allBlogArticles = (await getCollection('blog'))
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+} catch (error) {
+	console.error('Error loading blog articles:', error);
+}
+
+// Seperate articles
+const mostRecentArticle = allBlogArticles.length > 0 ? allBlogArticles[0] : null;
+const otherArticles = allBlogArticles.length > 1 ? allBlogArticles.slice(1) : [];
 ---
 
-<!-- <MainLayout> -->
-	<Welcome />
-<!-- </MainLayout> -->
+<MainLayout>
+	<Welcome mostRecentArticle={mostRecentArticle} otherArticles={otherArticles} />
+</MainLayout>
