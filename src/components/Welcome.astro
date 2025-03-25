@@ -14,7 +14,7 @@ const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
 const mostRecentArticle: CollectionEntry<'blog'> = allBlogArticles[0];
 const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
 ---
-<!-- <MainLayout Title={Title}> -->
+<MainLayout Title={Title}>
       <!-- Top Grid -->
       <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
         <div>
@@ -32,6 +32,6 @@ const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
         <ArticleCard article={article} />
         ))}
       </div>
-    <!-- </MainLayout> -->
+    </MainLayout>
      
 
