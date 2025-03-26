@@ -6,19 +6,19 @@ import type { CollectionEntry } from 'astro:content';
 import "../styles/global.css";
 
 // Fetch articles safely
-let allBlogArticles: CollectionEntry<'blog'>[] = [];
-try {
-	allBlogArticles = (await getCollection('blog'))
-		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-} catch (error) {
-	console.error('Error loading blog articles:', error);
-}
+const allBlogArticles: CollectionEntry<'blog'>[] = await getCollection('blog');
+// try {
+// 	allBlogArticles = (await getCollection('blog'))
+// 		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// } catch (error) {
+// 	console.error('Error loading blog articles:', error);
+// }
 
 // Seperate articles
-const mostRecentArticle = allBlogArticles.length > 0 ? allBlogArticles[0] : null;
-const otherArticles = allBlogArticles.length > 1 ? allBlogArticles.slice(1) : [];
+// const mostRecentArticle = allBlogArticles.length > 0 ? allBlogArticles[0] : null;
+// const otherArticles = allBlogArticles.length > 1 ? allBlogArticles.slice(1) : [];
 ---
 
 <MainLayout>
-	<Welcome mostRecentArticle={mostRecentArticle} otherArticles={otherArticles} />
+	<Welcome allBlogArticles={allBlogArticles} />
 </MainLayout>
